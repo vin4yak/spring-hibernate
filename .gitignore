@@ -1,0 +1,30 @@
+# generated files
+classes/
+build/
+target/
+bin/
+
+# Git
+*.patch
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Caches
+.sass-cache/
+.gradle/
+cobertura.ser
+.bundle/
+.gradletasknamecache
+
+# Eclipse
+.settings/
+.classpath
+.project
+
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
