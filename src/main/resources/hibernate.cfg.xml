@@ -15,6 +15,7 @@
 	   <property name="hbm2ddl.auto">create</property>
 	   
 	   <mapping class="com.spring.hibernate.domain.Employee" />
+	   <mapping class="com.spring.hibernate.domain.Vehicle" />
 	   
 	</session-factory>
 </hibernate-configuration>

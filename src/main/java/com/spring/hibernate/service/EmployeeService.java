@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.spring.hibernate.domain.Address;
 import com.spring.hibernate.domain.Employee;
 import com.spring.hibernate.domain.Hike;
+import com.spring.hibernate.domain.Vehicle;
 
 @Service
 public class EmployeeService {
@@ -24,6 +25,10 @@ public class EmployeeService {
         emp.setAge(23);
         emp.setJoinDate(new Date());
         emp.setDescription("Loooooonnngggg Descriptionnnn");
+        
+        Vehicle vehicle = new Vehicle();
+        vehicle.setVehicleType("Car");
+        emp.setVehicle(vehicle);
         
         Address homeAddress = new Address();
         homeAddress.setCity("Mumbai");
@@ -53,6 +58,7 @@ public class EmployeeService {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(emp);
+        session.save(vehicle);
         session.getTransaction().commit();
         session.close();
         
