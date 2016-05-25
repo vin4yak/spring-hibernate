@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -42,6 +43,7 @@ public class Employee {
 	*/
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	@Column(name="GENERATED_VALUE")
     private int generatedValue;
     
     @Column(name="EMP_ID")
@@ -59,6 +61,11 @@ public class Employee {
     @OneToOne
     @JoinColumn(name="VEHICLE_ID")
     private Vehicle vehicle;
+    
+    @OneToMany
+    @JoinTable(name="PREVIOUS_COMPANY_JOIN", joinColumns=@JoinColumn(name="GENERATED_VALUE"), 
+    	inverseJoinColumns=@JoinColumn(name="PREV_COMP_ID"))
+    private List<PreviousCompany> prevCompanyList = new ArrayList<PreviousCompany>();
     
     @Embedded
     private Address homeAddress;

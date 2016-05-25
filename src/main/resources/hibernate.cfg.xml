@@ -16,6 +16,7 @@
 	   
 	   <mapping class="com.spring.hibernate.domain.Employee" />
 	   <mapping class="com.spring.hibernate.domain.Vehicle" />
+	   <mapping class="com.spring.hibernate.domain.PreviousCompany" />
 	   
 	</session-factory>
 </hibernate-configuration>

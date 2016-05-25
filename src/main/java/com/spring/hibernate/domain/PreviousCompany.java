@@ -8,17 +8,20 @@ import javax.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @Entity
-public class Vehicle {
+public class PreviousCompany {
 	
 	@Id
 	@GeneratedValue
-	@Column(name="VEHICLE_ID")
-	private int vehicleId;
+	@Column(name="PREV_COMP_ID")
+	private int prevCompId;
 	
-	@Column(name="VEHICLE_TYPE")	
-	private String vehicleType;
+	@Column(name="PREV_COMPANY_NAME")
+	private String companyName;
+	
+	@Column(name="PREV_COMPANY_LOCATION")
+	private String companyLocation;
 
 }

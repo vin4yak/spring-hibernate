@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.spring.hibernate.domain.Address;
 import com.spring.hibernate.domain.Employee;
 import com.spring.hibernate.domain.Hike;
+import com.spring.hibernate.domain.PreviousCompany;
 import com.spring.hibernate.domain.Vehicle;
 
 @Service
@@ -19,18 +20,63 @@ public class EmployeeService {
     SessionFactory sessionFactory;
     
     public Integer createEmployee(Employee emp){
-        emp.setEmployeeId(1586);
-        emp.setFname("Vinu");
-        emp.setLname("Prabhu");
-        emp.setAge(23);
-        emp.setJoinDate(new Date());
-        emp.setDescription("Loooooonnngggg Descriptionnnn");
+        setFirstLevelFields(emp);
+        setHomeAndOfficeAddresses(emp);
+        setHikes(emp);
+        Vehicle vehicle = setVehicle(emp);
+        PreviousCompany previousCompany = setPreviousCompanyOne(emp);
+        PreviousCompany previousCompany2 = setPreviousCompanyTwo(emp);
         
-        Vehicle vehicle = new Vehicle();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.save(emp);
+        session.save(vehicle);
+        session.save(previousCompany);
+        session.save(previousCompany2);
+        session.getTransaction().commit();
+        session.close();
+        
+        return emp.getEmployeeId();
+    }
+
+	private PreviousCompany setPreviousCompanyTwo(Employee emp) {
+		PreviousCompany previousCompany2 = new PreviousCompany();
+        previousCompany2.setCompanyName("Cognizant Technologies");
+        previousCompany2.setCompanyLocation("Bengaluru");
+        emp.getPrevCompanyList().add(previousCompany2);
+		return previousCompany2;
+	}
+
+	private PreviousCompany setPreviousCompanyOne(Employee emp) {
+		PreviousCompany previousCompany = new PreviousCompany();
+        previousCompany.setCompanyName("HSBC Global Technologies");
+        previousCompany.setCompanyLocation("Pune");
+        emp.getPrevCompanyList().add(previousCompany);
+		return previousCompany;
+	}
+
+	private Vehicle setVehicle(Employee emp) {
+		Vehicle vehicle = new Vehicle();
         vehicle.setVehicleType("Car");
         emp.setVehicle(vehicle);
+		return vehicle;
+	}
+
+	private void setHikes(Employee emp) {
+		Hike hike = new Hike();
+        hike.setYear("2015");
+        hike.setSalary("2.3");
         
-        Address homeAddress = new Address();
+        Hike hike2 = new Hike();
+        hike2.setYear("2016");
+        hike2.setSalary("3.0");
+        
+        emp.getListofHikes().add(hike);
+        emp.getListofHikes().add(hike2);
+	}
+
+	private void setHomeAndOfficeAddresses(Employee emp) {
+		Address homeAddress = new Address();
         homeAddress.setCity("Mumbai");
         homeAddress.setPinCode(400064);
         homeAddress.setState("Maharashtra");
@@ -43,27 +89,16 @@ public class EmployeeService {
         officeAddress.setState("Maharashtra");
         officeAddress.setStreet("Kharadi");
         emp.setOfficeAddress(officeAddress);
-        
-        Hike hike = new Hike();
-        hike.setYear("2015");
-        hike.setSalary("2.3");
-        
-        Hike hike2 = new Hike();
-        hike2.setYear("2016");
-        hike2.setSalary("3.0");
-        
-        emp.getListofHikes().add(hike);
-        emp.getListofHikes().add(hike2);
-        
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.save(emp);
-        session.save(vehicle);
-        session.getTransaction().commit();
-        session.close();
-        
-        return emp.getEmployeeId();
-    }
+	}
+
+	private void setFirstLevelFields(Employee emp) {
+		emp.setEmployeeId(1586);
+        emp.setFname("Vinu");
+        emp.setLname("Prabhu");
+        emp.setAge(23);
+        emp.setJoinDate(new Date());
+        emp.setDescription("Loooooonnngggg Descriptionnnn");
+	}
     
     public Employee getEmployeeBasedOnId(Integer empId){
     	 Session session = sessionFactory.openSession();
