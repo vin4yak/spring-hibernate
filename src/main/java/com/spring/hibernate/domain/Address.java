@@ -10,17 +10,17 @@ import lombok.Setter;
 @Setter
 @Embeddable
 public class Address {
-	
-	@Column(name="STREET_NAME")
+
+	@Column(name = "STREET_NAME")
 	private String street;
-	
-	@Column(name="CITY_NAME")
+
+	@Column(name = "CITY_NAME")
 	private String city;
-	
-	@Column(name="STATE_NAME")
+
+	@Column(name = "STATE_NAME")
 	private String state;
-	
-	@Column(name="PIN_CODE")
+
+	@Column(name = "PIN_CODE")
 	private Integer pinCode;
 
 }

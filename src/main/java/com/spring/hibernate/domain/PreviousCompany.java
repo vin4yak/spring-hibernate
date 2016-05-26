@@ -12,16 +12,16 @@ import lombok.Setter;
 @Getter
 @Entity
 public class PreviousCompany {
-	
+
 	@Id
 	@GeneratedValue
-	@Column(name="PREV_COMP_ID")
+	@Column(name = "PREV_COMP_ID")
 	private int prevCompId;
-	
-	@Column(name="PREV_COMPANY_NAME")
+
+	@Column(name = "PREV_COMPANY_NAME")
 	private String companyName;
-	
-	@Column(name="PREV_COMPANY_LOCATION")
+
+	@Column(name = "PREV_COMPANY_LOCATION")
 	private String companyLocation;
 
 }

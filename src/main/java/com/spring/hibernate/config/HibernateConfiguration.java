@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Bean;
 
 @org.springframework.context.annotation.Configuration
 public class HibernateConfiguration {
-    
-    @Bean
-    public SessionFactory sessionFactory(){
-    	return new Configuration().configure().buildSessionFactory();
-    }
-    
+
+	@Bean
+	public SessionFactory sessionFactory() {
+		return new Configuration().configure().buildSessionFactory();
+	}
+
 }

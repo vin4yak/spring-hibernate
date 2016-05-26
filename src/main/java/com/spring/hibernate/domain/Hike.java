@@ -10,11 +10,11 @@ import lombok.Setter;
 @Setter
 @Embeddable
 public class Hike {
-	
-	@Column(name="HIKE_YEAR")
+
+	@Column(name = "HIKE_YEAR")
 	private String year;
-	
-	@Column(name="SALARY")
+
+	@Column(name = "SALARY")
 	private String salary;
 
 }

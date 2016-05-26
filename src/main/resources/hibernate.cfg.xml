@@ -12,11 +12,13 @@
 	   
 	   <property name="connection.pool_size">1</property>
 	   <property name="show_sql">true</property>
-	   <property name="hbm2ddl.auto">create</property>
+	   <property name="hbm2ddl.auto">update</property>
 	   
 	   <mapping class="com.spring.hibernate.domain.Employee" />
 	   <mapping class="com.spring.hibernate.domain.Vehicle" />
 	   <mapping class="com.spring.hibernate.domain.PreviousCompany" />
+	   <mapping class="com.spring.hibernate.domain.TwoWheeler" />
+	   <mapping class="com.spring.hibernate.domain.FourWheeler" />
 	   
 	</session-factory>
 </hibernate-configuration>
