@@ -1,4 +1,4 @@
-package com.spring.hibernate.domain;
+package com.spring.hibernate.domain.employee;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

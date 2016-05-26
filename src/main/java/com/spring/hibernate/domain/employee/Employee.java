@@ -1,4 +1,4 @@
-package com.spring.hibernate.domain;
+package com.spring.hibernate.domain.employee;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,6 +37,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
+//@SelectBeforeUpdate(value=true)
 @Table(name = "Employees")
 public class Employee {
 

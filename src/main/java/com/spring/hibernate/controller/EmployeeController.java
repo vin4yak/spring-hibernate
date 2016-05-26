@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.hibernate.domain.Employee;
+import com.spring.hibernate.domain.employee.Employee;
 import com.spring.hibernate.service.EmployeeService;
 
 @RestController
@@ -28,7 +28,7 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 
 	@RequestMapping("/create")
-	public ResponseEntity<String> createUser() throws IOException {
+	public ResponseEntity<String> createUser() {
 		Employee emp = new Employee();
 		Integer empId = employeeService.createEmployee(emp);
 		return new ResponseEntity<String>(EMPLOYEE_CREATED_SUCCESSFULLY + empId, HttpStatus.OK);

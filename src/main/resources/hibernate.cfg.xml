@@ -14,11 +14,13 @@
 	   <property name="show_sql">true</property>
 	   <property name="hbm2ddl.auto">update</property>
 	   
-	   <mapping class="com.spring.hibernate.domain.Employee" />
-	   <mapping class="com.spring.hibernate.domain.Vehicle" />
-	   <mapping class="com.spring.hibernate.domain.PreviousCompany" />
-	   <mapping class="com.spring.hibernate.domain.TwoWheeler" />
-	   <mapping class="com.spring.hibernate.domain.FourWheeler" />
+	   <mapping class="com.spring.hibernate.domain.employee.Employee" />
+	   <mapping class="com.spring.hibernate.domain.employee.Vehicle" />
+	   <mapping class="com.spring.hibernate.domain.employee.PreviousCompany" />
+	   <mapping class="com.spring.hibernate.domain.employee.TwoWheeler" />
+	   <mapping class="com.spring.hibernate.domain.employee.FourWheeler" />
+	   
+	   <mapping class="com.spring.hibernate.domain.user.UserInfo" />
 	   
 	</session-factory>
 </hibernate-configuration>

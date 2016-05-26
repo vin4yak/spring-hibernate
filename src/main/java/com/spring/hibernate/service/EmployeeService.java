@@ -7,13 +7,13 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.hibernate.domain.Address;
-import com.spring.hibernate.domain.Employee;
-import com.spring.hibernate.domain.FourWheeler;
-import com.spring.hibernate.domain.Hike;
-import com.spring.hibernate.domain.PreviousCompany;
-import com.spring.hibernate.domain.TwoWheeler;
-import com.spring.hibernate.domain.Vehicle;
+import com.spring.hibernate.domain.employee.Address;
+import com.spring.hibernate.domain.employee.Employee;
+import com.spring.hibernate.domain.employee.FourWheeler;
+import com.spring.hibernate.domain.employee.Hike;
+import com.spring.hibernate.domain.employee.PreviousCompany;
+import com.spring.hibernate.domain.employee.TwoWheeler;
+import com.spring.hibernate.domain.employee.Vehicle;
 
 @Service
 public class EmployeeService {

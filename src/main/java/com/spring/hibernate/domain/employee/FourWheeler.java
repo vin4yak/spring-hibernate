@@ -1,4 +1,4 @@
-package com.spring.hibernate.domain;
+package com.spring.hibernate.domain.employee;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -8,10 +8,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@DiscriminatorValue("Bike")
+@DiscriminatorValue("Car")
 @Entity
-public class TwoWheeler extends Vehicle {
+public class FourWheeler extends Vehicle {
 
-	private String SteeringHandle;
+	private String SteeringWheel;
 
 }
