@@ -1,7 +1,5 @@
 package com.spring.hibernate.controller;
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,14 +34,14 @@ public class EmployeeController {
 
 	@RequestMapping("/getEmployee")
 	public ResponseEntity<String> getEmployeeBasedOnEmployeeId(
-			@RequestParam(name = "empId", required = true) Integer empId) throws IOException {
+			@RequestParam(name = "empId", required = true) Integer empId) {
 		Employee emp = employeeService.getEmployeeBasedOnId(empId);
 		return new ResponseEntity<String>(GET_EMPLOYEE_MESSAGE + emp.getEmployeeId(), HttpStatus.OK);
 	}
 
 	@RequestMapping("/delete")
 	public ResponseEntity<String> deleteEmployeeBasedOnEmployeeId(
-			@RequestParam(name = "empId", required = true) Integer empId) throws IOException {
+			@RequestParam(name = "empId", required = true) Integer empId) {
 		Employee emp = employeeService.getEmployeeBasedOnId(empId);
 		Integer employeeId = employeeService.deleteEmployeeBasedOnId(emp);
 		return new ResponseEntity<String>(DELETE_EMPLOYEE_MESSAGE + employeeId, HttpStatus.OK);
@@ -51,7 +49,7 @@ public class EmployeeController {
 
 	@RequestMapping("/update")
 	public ResponseEntity<String> updateEmployeeBasedOnEmployeeId(
-			@RequestParam(name = "empId", required = true) Integer empId) throws IOException {
+			@RequestParam(name = "empId", required = true) Integer empId) {
 		Employee emp = employeeService.getEmployeeBasedOnId(empId);
 		Integer employeeId = employeeService.updateEmployeeBasedOnId(emp);
 		return new ResponseEntity<String>(UPDATE_EMPLOYEE_MESSAGE + employeeId, HttpStatus.OK);

@@ -41,4 +41,16 @@ public class UserService {
 		session.close();
 		return userList;
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<String> getUser(int userId) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		Query query = session.createQuery("select name from UserInfo where userId = " + userId);
+		List<String> userList = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return userList;
+	}
 }
