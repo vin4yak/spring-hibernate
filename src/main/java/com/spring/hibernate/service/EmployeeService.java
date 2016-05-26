@@ -29,6 +29,7 @@ public class EmployeeService {
 		setPreviousCompanyOne(emp);
 		setPreviousCompanyTwo(emp);
 
+		// Transient Object. Hibernate hasn't received this object.
 		TwoWheeler twoWheeler = new TwoWheeler();
 		twoWheeler.setSteeringHandle("Bike Handle");
 		twoWheeler.setVehicleType("Bike");
@@ -40,10 +41,18 @@ public class EmployeeService {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.persist(emp);
+		// Handed over to hibernate. So, it becomes a persistent object.
 		session.save(twoWheeler);
 		session.save(fourWheeler);
+
+		// Persistent Object
+		twoWheeler.setSteeringHandle("Updated Bike Handle");
 		session.getTransaction().commit();
 		session.close();
+
+		// After session.close, the above objects become 'detached objects'.
+		// Hibernate will not track the object anymore.
+		twoWheeler.setSteeringHandle("Bike Handle Will Not Be Updated!");
 
 		return emp.getEmployeeId();
 	}
