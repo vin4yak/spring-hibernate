@@ -47,7 +47,27 @@ public class UserService {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 
+		// Note that this method is vulnerable to SQL Injection.
 		Query query = session.createQuery("select name from UserInfo where userId = " + userId);
+		List<String> userList = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return userList;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<String> getUserUsingQuerySubstitution(int userId) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		Query query = session.createQuery("select name from UserInfo where userId = ?");
+		query.setInteger(0, userId);
+		/*
+		 * You can use this if you don't want to specify location.
+		 * Query query = session.createQuery("select name from UserInfo where userId = :userId");
+		 * query.setString("userId", userId);
+		 * 
+		 */
 		List<String> userList = query.list();
 		session.getTransaction().commit();
 		session.close();
