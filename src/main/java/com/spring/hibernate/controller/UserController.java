@@ -42,5 +42,11 @@ public class UserController {
 		List<String> userList = userService.getUser(userId);
 		return new ResponseEntity<String>(USER_FETCHED + userList.get(0), HttpStatus.OK);
 	}
+	
+	@RequestMapping("/getUserById")
+	public ResponseEntity<String> fetchUserBasedOnIdUsingDifferentQueries(@RequestParam(name = "userId", required = true) int userId) {
+		List<UserInfo> userList = userService.getUserUsingNamedQuery(userId);
+		return new ResponseEntity<String>(USER_FETCHED + userList.get(0).getName(), HttpStatus.OK);
+	}
 
 }

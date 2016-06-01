@@ -73,4 +73,17 @@ public class UserService {
 		session.close();
 		return userList;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<UserInfo> getUserUsingNamedQuery(int userId) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		Query query = session.getNamedQuery("UserInfo.byId");
+		query.setInteger(0, userId);
+		List<UserInfo> userList = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return userList;
+	}
 }
