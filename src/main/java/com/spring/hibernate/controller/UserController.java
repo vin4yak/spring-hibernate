@@ -48,5 +48,11 @@ public class UserController {
 		List<UserInfo> userList = userService.getUserUsingNamedQuery(userId);
 		return new ResponseEntity<String>(USER_FETCHED + userList.get(0).getName(), HttpStatus.OK);
 	}
+	
+	@RequestMapping("/getUserByName")
+	public ResponseEntity<String> fetchUserBasedOnNameUsingCriteria(@RequestParam(name = "name", required = true) String name) {
+		List<UserInfo> userList = userService.getUserByNameUsingCriteria(name);
+		return new ResponseEntity<String>(USER_FETCHED + userList, HttpStatus.OK);
+	}
 
 }

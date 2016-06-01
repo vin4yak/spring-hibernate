@@ -2,9 +2,11 @@ package com.spring.hibernate.service;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -82,6 +84,24 @@ public class UserService {
 		Query query = session.getNamedQuery("UserInfo.byId");
 		query.setInteger(0, userId);
 		List<UserInfo> userList = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return userList;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<UserInfo> getUserByNameUsingCriteria(String name) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		
+		Criteria criteria = session.createCriteria(UserInfo.class);
+		criteria.add(Restrictions.eq("name", name))
+				.add(Restrictions.gt("userId", 5));
+		
+		//OR
+		//criteria.add(Restrictions.or(Restrictions.eq("name", name), Restrictions.eq("userId", 5)));
+
+		List<UserInfo> userList = criteria.list();
 		session.getTransaction().commit();
 		session.close();
 		return userList;
