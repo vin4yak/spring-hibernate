@@ -126,4 +126,29 @@ public class UserService {
 		session.close();
 		return userList;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<UserInfo> getUsesUsingQueryCache() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		Query query = session.createQuery("from UserInfo where name=User 5");
+		query.setCacheable(true);
+		
+		List<UserInfo> userInfoList =  query.list();
+		userInfoList.get(0).setName("Updated User 5");
+		
+		session.getTransaction().commit();
+		session.close();
+		
+		session.beginTransaction();
+		
+		Query query2 = session.createQuery("select * from UserInfo");
+		query2.setCacheable(true);
+		
+		List<UserInfo> userList = query.list();
+		session.getTransaction().commit();
+		session.close();
+		return userList;
+	}
 }
