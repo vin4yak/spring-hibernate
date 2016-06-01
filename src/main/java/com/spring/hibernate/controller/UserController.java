@@ -42,17 +42,27 @@ public class UserController {
 		List<String> userList = userService.getUser(userId);
 		return new ResponseEntity<String>(USER_FETCHED + userList.get(0), HttpStatus.OK);
 	}
-	
+
 	@RequestMapping("/getUserById")
-	public ResponseEntity<String> fetchUserBasedOnIdUsingDifferentQueries(@RequestParam(name = "userId", required = true) int userId) {
+	public ResponseEntity<String> fetchUserBasedOnIdUsingDifferentQueries(
+			@RequestParam(name = "userId", required = true) int userId) {
 		List<UserInfo> userList = userService.getUserUsingNamedQuery(userId);
 		return new ResponseEntity<String>(USER_FETCHED + userList.get(0).getName(), HttpStatus.OK);
 	}
-	
+
 	@RequestMapping("/getUserByName")
-	public ResponseEntity<String> fetchUserBasedOnNameUsingCriteria(@RequestParam(name = "name", required = true) String name) {
+	public ResponseEntity<String> fetchUserBasedOnNameUsingCriteria(
+			@RequestParam(name = "name", required = true) String name) {
 		List<UserInfo> userList = userService.getUserByNameUsingCriteria(name);
 		return new ResponseEntity<String>(USER_FETCHED + userList, HttpStatus.OK);
+	}
+
+	@RequestMapping("/getUserByExample")
+	public ResponseEntity<String> fetchUserBasedOnNameUsingQueryByExample(
+			@RequestParam(name = "userId", required = true) int userId,
+			@RequestParam(name = "name", required = true) String name) {
+		List<UserInfo> userList = userService.getUserUsingQueryByExample(userId, name);
+		return new ResponseEntity<String>(USER_FETCHED + userList.get(0).getName(), HttpStatus.OK);
 	}
 
 }
